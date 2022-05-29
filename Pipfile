@@ -1,0 +1,13 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+homeassistant = "2022.5.3"
+danilov0x33_vector = "0.8.1"
+
+[dev-packages]
+
+[requires]
+python_version = "3.10"

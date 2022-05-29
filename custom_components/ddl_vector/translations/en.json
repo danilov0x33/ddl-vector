@@ -1,0 +1,38 @@
+{
+  "config": {
+    "error": {
+      "common": "{common_error_message}"
+    },
+    "step": {
+      "user": {
+        "description": "Choose way for get guid and certification",
+        "data": {
+          "method": "Way for get guid and certification"
+        }
+      },
+      "get_guid_and_cert": {
+        "data": {
+          "ip": "IP",
+          "name": "Vector name",
+          "serial": "Serial No",
+          "email": "Email",
+          "password": "Password"
+
+        }
+      },
+      "write_guid_and_cert": {
+        "data": {
+          "ip": "IP",
+          "name": "Vector name",
+          "serial": "Serial No",
+          "guid": "GUID",
+          "cert": "Certification"
+        }
+      }
+    }
+  },
+  "options": {
+    "step": {
+    }
+  }
+}

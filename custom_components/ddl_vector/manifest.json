@@ -1,0 +1,14 @@
+{
+  "domain": "ddl_vector",
+  "name": "DDL Vector",
+  "config_flow": true,
+  "documentation": "https://github.com/danilov0x33/ddl-vector",
+  "requirements": ["danilov0x33-vector==0.8.1"],
+  "ssdp": [],
+  "zeroconf": [],
+  "homekit": {},
+  "dependencies": ["http"],
+  "codeowners": ["@danilov0x33"],
+  "iot_class": "local_push",
+  "version": "1.0.0"
+}

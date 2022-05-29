@@ -1,0 +1,12 @@
+say_text:
+  name: Say text
+  description: Say eny text
+  target:
+    entity:
+      integration: ddl_vector
+  fields:
+    text:
+      name: Text
+      description: English text
+      required: true
+      example: Hello
