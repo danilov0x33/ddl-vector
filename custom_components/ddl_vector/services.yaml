@@ -7,6 +7,6 @@ say_text:
   fields:
     text:
       name: Text
-      description: English text
+      description: Any text
       required: true
       example: Hello

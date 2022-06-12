@@ -4,7 +4,7 @@ import logging
 
 from homeassistant.config_entries import ConfigEntry
 from homeassistant.const import Platform
-from homeassistant.core import HomeAssistant
+from homeassistant.core import HomeAssistant, ServiceCall
 
 from .const import (
     DOMAIN,
@@ -41,6 +41,18 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
     await vector_data_coordinator.async_config_entry_first_refresh()
 
     hass.config_entries.async_setup_platforms(entry, PLATFORMS)
+
+    async def perform_say_text(call: ServiceCall):
+        await hass.async_add_executor_job(vector_data_coordinator.vector_robot_sync_api.connect, 30)
+        try:
+            await hass.async_add_executor_job(vector_data_coordinator.vector_robot_sync_api.behavior.say_text, call.data.get('text'))
+        except Exception as e:
+            _LOGGER.exception(e)
+        finally:
+            await hass.async_add_executor_job(vector_data_coordinator.vector_robot_sync_api.disconnect)
+
+    hass.services.async_register(DOMAIN, 'say_text', perform_say_text)
+
     return True
 
 

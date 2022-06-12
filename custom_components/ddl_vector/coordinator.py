@@ -2,6 +2,7 @@ import logging
 from datetime import timedelta
 
 import anki_vector
+from anki_vector.connection import ControlPriorityLevel
 from anki_vector.exceptions import VectorAsyncException
 from async_timeout import timeout
 from homeassistant.core import HomeAssistant, Event, callback
@@ -18,6 +19,13 @@ _LOGGER = logging.getLogger(__name__)
 class VectorDataUpdateCoordinator(DataUpdateCoordinator):
     def __init__(self, hass: HomeAssistant, vector_config: VectorConfig) -> None:
         self.vector_config = vector_config
+        self.vector_robot_sync_api = anki_vector.Robot(
+            serial=vector_config.serial,
+            config=vector_config.get_api_config(),
+            behavior_activation_timeout=1000,
+            cache_animation_lists=False,
+            behavior_control_level=ControlPriorityLevel.DEFAULT_PRIORITY
+        )
         self.vector_robot_async_api = anki_vector.AsyncRobot(
             serial=vector_config.serial,
             config=vector_config.get_api_config(),
